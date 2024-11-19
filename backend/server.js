@@ -5,13 +5,20 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 
-const allowedOrigins = ['https://sonar-rock-or-mine-predictor-frontend.vercel.app/']; // Replace with your actual frontend URL
+const allowedOrigins = ['https://sonar-rock-or-mine-predictor-frontend.vercel.app'];
 app.use(
   cors({
-    origin: allowedOrigins, // Allow requests from your frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
-    credentials: true // Enable if your frontend needs to send cookies or auth headers
+    origin: function (origin, callback) {
+      // Allow requests from allowed origins or no origin (e.g., Postman)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true // Enable cookies/auth headers
   })
 );
 
