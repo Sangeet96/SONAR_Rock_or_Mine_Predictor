@@ -1,0 +1,19 @@
+@layer utilities {
+  .neon-text {
+    color: #e0eaff;
+    text-shadow: 0px 0px 6px rgba(72, 103, 255, 0.8), 0px 0px 12px rgba(87, 181, 255, 0.8);
+  }
+
+  .neon-button {
+    box-shadow: 0px 0px 8px rgba(72, 103, 255, 0.6), 0px 0px 12px rgba(87, 181, 255, 0.8);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .neon-button:hover {
+    box-shadow: 0px 0px 16px rgba(72, 103, 255, 1), 0px 0px 20px rgba(87, 181, 255, 1);
+  }
+
+  .glow-box {
+    box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.4), 0px 0px 25px rgba(255, 20, 147, 0.6);
+  }
+}
