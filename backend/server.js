@@ -4,7 +4,17 @@ const { spawn } = require('child_process');
 const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+
+const allowedOrigins = ['https://sonar-rock-or-mine-predictor-frontend.vercel.app/']; // Replace with your actual frontend URL
+app.use(
+  cors({
+    origin: allowedOrigins, // Allow requests from your frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+    credentials: true // Enable if your frontend needs to send cookies or auth headers
+  })
+);
+
 app.post('/predict', (req, res) => {
     console.log("Hello");
     const features = req.body.features;
