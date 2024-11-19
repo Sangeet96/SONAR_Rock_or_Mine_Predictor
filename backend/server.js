@@ -7,18 +7,12 @@ app.use(bodyParser.json());
 
 app.use(express.json());
 
-// Allow all origins for testing (Replace '*' with your frontend URL for production)
-const corsOptions = {
-  origin: 'https://sonar-rock-or-mine-predictor-frontend.vercel.app', // Frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true // If you're using cookies or auth headers
-};
-
-app.use(cors(corsOptions));
-
-// Handle preflight requests (OPTIONS)
-app.options('*', cors(corsOptions));
+app.use(cors({
+  origin: 'https://sonar-rock-or-mine-predictor-frontend.vercel.app', // Your frontend's URL
+  methods: ['GET', 'POST', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+  credentials: true
+}));
 
 app.post('/predict', (req, res) => {
     console.log("Hello");
